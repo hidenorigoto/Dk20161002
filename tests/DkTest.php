@@ -8,11 +8,16 @@ class DkTest extends \PHPUnit_Framework_TestCase
      * @var Dk
      */
     protected $skeleton;
+    /**
+     * @var Dk2
+     */
+    protected $skeleton2;
 
     protected function setUp()
     {
         parent::setUp();
         $this->skeleton = new Dk;
+        $this->skeleton2 = new Dk2;
     }
 
     /**
@@ -21,6 +26,16 @@ class DkTest extends \PHPUnit_Framework_TestCase
     public function testMain($input, $expected)
     {
         $result = $this->skeleton->main($input);
+
+        $this->assertThat($result, $this->equalTo($expected));
+    }
+
+    /**
+     * @dataProvider dataForMain
+     */
+    public function testMain2($input, $expected)
+    {
+        $result = $this->skeleton2->main($input);
 
         $this->assertThat($result, $this->equalTo($expected));
     }
